@@ -61,3 +61,24 @@ VALUES
   (2, 9, 'Ensamblaje', 'Fuera de servicio', '2023-06-23 10:25:15'),
   (3, 20, 'Inspeccion', 'En funcionamiento', '2023-07-04 11:50:40'),
   (4, 21, 'Inspeccion', 'En mantenimiento', '2023-07-05 12:15:20');
+  INSERT INTO Eventos (ID_evento, ID_dispositivo, Tipo_evento, Descripcion, Fecha_hora)
+VALUES
+  (1, 1, 'Alarma', 'Temperatura alta en la sala de producción 1', '2023-06-15 11:30:20'),
+  (2, 2, 'Alarma', 'Temperatura baja en la sala de producción 2', '2023-06-16 12:45:35'),
+  (3, 3, 'Fallo', 'Presión fuera de rango en la sala de producción 1', '2023-06-17 14:20:50'),
+  (4, 4, 'Actualizacion', 'Actualización de firmware en la válvula 1', '2023-06-18 15:55:15'),
+  (5, 5, 'Alarma', 'Valvula 2 no responde', '2023-06-19 16:30:30'),
+  (6, 10, 'Fallo', 'Pistón hidráulico 1 atascado', '2023-06-24 09:40:45'),
+  (7, 11, 'Actualizacion', 'Actualización de software en el pistón 2', '2023-06-25 10:50:20');
+INSERT INTO Datos_Bandas (ID_dato, ID_dispositivo, Tipo_banda, Velocidad, Fecha_hora)
+VALUES
+  (1, 12, 'Produccion', 0.8, '2023-06-26 09:10:50'),
+  (2, 13, 'Produccion', 1.2, '2023-06-27 10:25:15');
+INSERT INTO Usuarios (ID_usuario, Nombre_usuario, Correo_electronico, Contrasena, Rol)
+VALUES
+  (1, 'Admin', 'admin@fabricaautomoviles.com', '123456', 'Admin'),
+  (2, 'Usuario1', 'usuario1@fabricaautomoviles.com', 'abcdef', 'Usuario'),
+  (3, 'Usuario2', 'usuario2@fabricaautomoviles.com', 'qwerty', 'Usuario'),
+  (4, 'Usuario3', 'usuario3@fabricaautomoviles.com', 'password', 'Usuario'),
+  (5, 'Usuario4', 'usuario4@fabricaautomoviles.com', 'mercedes1', 'Usuario');
+
