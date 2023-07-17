@@ -48,6 +48,11 @@ Consultas y análisis de datos: Proporcionar funcionalidades de consulta y anál
 
 ## Entregables y Avances
 - [x]  (**Lunes 17 Julio -> Avance**): Creación del diagrama de la base de datos que se utilizará para la gestión de dispositivos IoT, con sus respectivas tablas, relaciones y restricciones.
+
+### Screenshots
+
+![Data Base](img/Screenshot from 2023-07-17 17-26-40.png)
+
 ## Authors
 
 - [@Gerson Hernández](https://github.com/gersonhdz8)
