@@ -51,7 +51,7 @@ Consultas y análisis de datos: Proporcionar funcionalidades de consulta y anál
 
 ### Screenshots
 
-![Data Base](img/Screenshot from 2023-07-17 17-26-40.png)
+![Screenshot from 2023-07-17 17-26-40](https://github.com/gersonhdz8/Plataforma-de-intercambio-de-datos-de-IoT/assets/79285684/33ca8fca-fa9c-435f-ab70-bd4669860d18)
 
 ## Authors
 
