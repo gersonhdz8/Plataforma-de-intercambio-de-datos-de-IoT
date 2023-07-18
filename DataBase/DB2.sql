@@ -1,4 +1,4 @@
-CREATE DATABASE Hogares_IoT;
+DROP DATABASE Hogares_IoT;
 
 USE Hogares_IoT;
 -- Creación de la tabla "Hogares"
