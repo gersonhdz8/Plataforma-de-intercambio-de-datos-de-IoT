@@ -75,5 +75,4 @@ CREATE TABLE Dispositivos_Proveedores (
     FOREIGN KEY (ID_proveedor) REFERENCES Proveedores(ID_proveedor)
 );
 
--- Asegurarse de que un dispositivo no esté en más de una ubicación a la vez
-ALTER TABLE Dispositivos ADD CONSTRAINT UQ_Dispositivos_IDUbicacion UNIQUE (ID_ubicacion);
+
