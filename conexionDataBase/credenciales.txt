@@ -1,0 +1,5 @@
+**CAMPUS**
+MY_DATABASE={"hostname":"localhost", "user":"campus","password": "campus2023","database": "prueba_backend","port": 3306}
+
+**HOME**
+MY_DATABASE={"hostname":"127.0.0.1", "user":"root","password": "","database": "prueba_backend","port": 3306}
