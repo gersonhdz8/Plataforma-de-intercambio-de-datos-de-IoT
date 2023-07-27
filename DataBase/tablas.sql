@@ -3,7 +3,7 @@ CREATE DATABASE Hogares_IoT;
 USE Hogares_IoT;
 -- Crear tabla "Hogares"
 CREATE TABLE Hogares (
-    ID_hogar INT PRIMARY KEY,
+    ID_hogar INT PRIMARY KEY AUTO_INCREMENT,
     Nombre_hogar TEXT NOT NULL,
     Direccion TEXT NOT NULL,
     Ciudad VARCHAR(100) NOT NULL,
@@ -14,14 +14,14 @@ CREATE TABLE Hogares (
 
 -- Crear tabla "Tipos_Dispositivos"
 CREATE TABLE Tipos_Dispositivos (
-    ID_tipo_dispositivo INT PRIMARY KEY,
+    ID_tipo_dispositivo INT PRIMARY KEY AUTO_INCREMENT,
     Nombre_tipo TEXT NOT NULL,
     Descripcion TEXT
 );
 
 -- Crear tabla "Dispositivos"
 CREATE TABLE Dispositivos (
-    ID_dispositivo INT PRIMARY KEY,
+    ID_dispositivo INT PRIMARY KEY AUTO_INCREMENT,
     ID_hogar INT NOT NULL,
     ID_tipo_dispositivo INT NOT NULL,
     Nombre_dispositivo TEXT NOT NULL,
@@ -34,13 +34,13 @@ CREATE TABLE Dispositivos (
 
 -- Crear tabla "Ubicacion"
 CREATE TABLE Ubicacion (
-    ID_ubicacion INT PRIMARY KEY,
+    ID_ubicacion INT PRIMARY KEY AUTO_INCREMENT,
     Nombre_ubicacion TEXT NOT NULL
 );
 
 -- Crear tabla "Eventos_Dispositivos"
 CREATE TABLE Eventos_Dispositivos (
-    ID_evento_dispositivo INT PRIMARY KEY,
+    ID_evento_dispositivo INT PRIMARY KEY AUTO_INCREMENT,
     ID_dispositivo INT NOT NULL,
     Tipo_evento TEXT NOT NULL,
     Descripcion TEXT NOT NULL,
@@ -50,7 +50,7 @@ CREATE TABLE Eventos_Dispositivos (
 
 -- Crear tabla "Proveedores"
 CREATE TABLE Proveedores (
-    ID_proveedor INT PRIMARY KEY,
+    ID_proveedor INT PRIMARY KEY AUTO_INCREMENT,
     Nombre_proveedor TEXT NOT NULL,
     Direccion_proveedor TEXT NOT NULL,
     Numero_Contacto VARCHAR(20)
@@ -58,7 +58,7 @@ CREATE TABLE Proveedores (
 
 -- Crear tabla "Info_Propietario"
 CREATE TABLE Info_Propietario (
-    ID_propietario INT PRIMARY KEY,
+    ID_propietario INT PRIMARY KEY AUTO_INCREMENT,
     Nombre TEXT NOT NULL,
     Apellido TEXT NOT NULL,
     Numero_Contacto VARCHAR(20),
@@ -67,7 +67,7 @@ CREATE TABLE Info_Propietario (
 
 -- Crear tabla "Dispositivos_Proveedores"
 CREATE TABLE Dispositivos_Proveedores (
-    ID_dispositivo_proveedor INT PRIMARY KEY,
+    ID_dispositivo_proveedor INT PRIMARY KEY AUTO_INCREMENT,
     ID_dispositivo INT NOT NULL,
     ID_proveedor INT NOT NULL,
     Precio DECIMAL(10, 2) NOT NULL,
