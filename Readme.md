@@ -49,6 +49,8 @@ Consultas y análisis de datos: Proporcionar funcionalidades de consulta y anál
 ## Entregables y Avances
 (**Lunes 17 Julio -> Avance**): Creación del diagrama de la base de datos que se utilizará para la gestión de dispositivos IoT, con sus respectivas tablas, relaciones y restricciones.
 
+![Alt text](<img/Captura de pantalla 2023-07-20 202108.png>)
+
 (**Jueves 27 Julio -> Avance**):Desarrollo una API que permita la creación, actualización, lectura y eliminación de dispositivos, así como el registro y consulta de los datos generados por ellos.
 ## Installation
 
