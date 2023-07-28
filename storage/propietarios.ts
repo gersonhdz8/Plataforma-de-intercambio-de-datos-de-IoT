@@ -4,9 +4,7 @@ import { IsDefined, IsNotEmpty, IsNumber, IsString } from 'class-validator';
 export class Propietarios {
 
     @Expose({ name: "ID_propietario" })
-    @Type(() => Number)
-    //@IsNumber({}, {message: ()=>{throw {status: 406, message:"El formato del parametro (ID_hogar) no es correcto"}}})
-    //@IsDefined({message: ()=>{ throw {status:422, message: "El parametro ID_hogar es obligatorio"}}})    
+    @Type(() => Number)    
     ID_propietario: number;
 
     @Expose({ name: "Nombre" })

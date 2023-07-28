@@ -19,10 +19,7 @@ export class Proveedores {
 }
 __decorate([
     Expose({ name: "ID_proveedor" }),
-    Type(() => Number)
-    //@IsNumber({}, {message: ()=>{throw {status: 406, message:"El formato del parametro (ID_hogar) no es correcto"}}})
-    //@IsDefined({message: ()=>{ throw {status:422, message: "El parametro ID_hogar es obligatorio"}}})    
-    ,
+    Type(() => Number),
     __metadata("design:type", Number)
 ], Proveedores.prototype, "ID_proveedor", void 0);
 __decorate([

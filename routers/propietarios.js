@@ -1,9 +1,6 @@
-import mysql from "mysql2";
 import {Router} from "express";
-import {Exclude, plainToClass} from "class-transformer";
 import {dtoPropietarios} from "../middleware/DTO.js"
 import appDB from "../conexionDataBase/conexionDB.js"
-import {tokenJWT} from "../middleware/token.js"
 
 
 const appPropietarios = Router();
@@ -40,7 +37,7 @@ appPropietarios.post('/post',dtoPropietarios,appDB, (req, res) => {
         })
 });
 
-appPropietarios.put('/update',dtoPropietarios,appDB, (req, res) => { 
+appPropietarios.put('/update/:DNI',dtoPropietarios,appDB, (req, res) => { 
 
     const { ID_propietario, Nombre, Apellido,Numero_Contacto,DNI } = req.body;   
     
@@ -66,7 +63,7 @@ appPropietarios.put('/update',dtoPropietarios,appDB, (req, res) => {
     }
     sql = sql.slice(0, -1); // Eliminar la última coma
     sql += ' WHERE DNI = ?';
-    values.push(DNI);
+    values.push(req.params.DNI);
 
     // Ejecutar la consulta SQL
     req.conexion.query(sql, values, (error, data, fils) => {
@@ -79,7 +76,7 @@ appPropietarios.put('/update',dtoPropietarios,appDB, (req, res) => {
         res.send();
     });
 });
-appPropietarios.delete('/delete',appDB, (req, res) => { 
+appPropietarios.delete('/delete/:DNI',appDB, (req, res) => { 
     
     const { DNI } = req.body; 
 
@@ -92,7 +89,7 @@ appPropietarios.delete('/delete',appDB, (req, res) => {
     console.log(req.body)
     req.conexion.query(
     /*sql*/`DELETE FROM  info_propietario WHERE DNI= ?`,
-        [DNI],
+        [req.params.DNI],
         (error, data,fils) => {
             console.log(error);
             console.log(data);

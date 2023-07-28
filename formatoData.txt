@@ -1,0 +1,12 @@
+**HOGARES
+
+
+**DISPOSITIVOS 
+{
+    "ID_dispositivo": 1,
+    "ID_hogar": 1,
+    "ID_tipo_dispositivo": 1,
+    "Nombre_dispositivo": "Sensor Temperatura Sala",
+    "Estado": "Activo",
+    "ID_ubicacion": 1
+  },

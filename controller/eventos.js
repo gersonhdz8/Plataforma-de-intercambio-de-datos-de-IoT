@@ -20,10 +20,7 @@ export class Eventos {
 }
 __decorate([
     Expose({ name: "ID_evento_dispositivo" }),
-    Type(() => Number)
-    //@IsNumber({}, {message: ()=>{throw {status: 406, message:"El formato del parametro (ID_hogar) no es correcto"}}})
-    //@IsDefined({message: ()=>{ throw {status:422, message: "El parametro ID_hogar es obligatorio"}}})    
-    ,
+    Type(() => Number),
     __metadata("design:type", Number)
 ], Eventos.prototype, "ID_evento_dispositivo", void 0);
 __decorate([

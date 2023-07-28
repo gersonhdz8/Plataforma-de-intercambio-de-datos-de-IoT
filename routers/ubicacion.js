@@ -1,9 +1,7 @@
-import mysql from "mysql2";
 import {Router} from "express";
-import {Exclude, plainToClass} from "class-transformer";
 import {dtoUbicacion} from "../middleware/DTO.js"
 import appDB from "../conexionDataBase/conexionDB.js"
-import {tokenJWT} from "../middleware/token.js"
+
 
 
 const appUbicacion = Router();
@@ -40,7 +38,7 @@ appUbicacion.post('/post',dtoUbicacion,appDB, (req, res) => {
         })
 });
 
-appUbicacion.put('/update',dtoUbicacion,appDB, (req, res) => { 
+appUbicacion.put('/update/:ID_ubicacion',dtoUbicacion,appDB, (req, res) => { 
 
     const { ID_ubicacion, Nombre_ubicacion } = req.body;  
     
@@ -62,7 +60,7 @@ appUbicacion.put('/update',dtoUbicacion,appDB, (req, res) => {
     }
     sql = sql.slice(0, -1); // Eliminar la última coma
     sql += ' WHERE ID_ubicacion = ?';
-    values.push(ID_ubicacion);
+    values.push(req.params.ID_ubicacion);
 
     // Ejecutar la consulta SQL
     req.conexion.query(sql, values, (error, data, fils) => {
@@ -88,7 +86,7 @@ appUbicacion.delete('/delete',appDB, (req, res) => {
     console.log(req.body)
     req.conexion.query(
     /*sql*/`DELETE FROM  ubicacion WHERE ID_ubicacion= ?`,
-        [ID_ubicacion],
+        [req.params.ID_ubicacion],
         (error, data,fils) => {
             console.log(error);
             console.log(data);

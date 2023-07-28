@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import {Exclude, plainToClass} from "class-transformer"
+import {plainToClass} from "class-transformer"
 import {Hogares} from "../controller/hogares.js"
 import {Propietarios} from "../controller/propietarios.js"
 import {Dispositivos} from "../controller/dispositivos.js"
@@ -16,7 +16,6 @@ const dtoHogares= (async(req,res,next)=>{
         let data = plainToClass(Hogares,req.body,{ excludeExtraneousValues: true });
         await validate(data)
         req.body=data;
-
         next();         
     }
     catch(error){   

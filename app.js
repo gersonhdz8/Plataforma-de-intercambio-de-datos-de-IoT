@@ -12,8 +12,6 @@ import appJWT from "./routers/JWT.js";
 import { validateJWT } from "./middleware/token.js";
 
 
-
-
 const app = express();
 dotenv.config();
 app.use(express.json());

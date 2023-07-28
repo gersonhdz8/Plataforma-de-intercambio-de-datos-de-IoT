@@ -1,9 +1,7 @@
-import mysql from "mysql2";
 import {Router} from "express";
-import {Exclude, plainToClass} from "class-transformer";
 import {dtoProveedores} from "../middleware/DTO.js"
 import appDB from "../conexionDataBase/conexionDB.js"
-import {tokenJWT} from "../middleware/token.js"
+
 
 
 const appProveedores = Router();
@@ -40,7 +38,7 @@ appProveedores.post('/post',dtoProveedores,appDB, (req, res) => {
         })
 });
 
-appProveedores.put('/update',dtoProveedores,appDB, (req, res) => { 
+appProveedores.put('/update/:ID_proveedor',dtoProveedores,appDB, (req, res) => { 
 
     const { ID_proveedor, Nombre_proveedor, Direccion_proveedor,Numero_Contacto } = req.body;  
     
@@ -65,7 +63,7 @@ appProveedores.put('/update',dtoProveedores,appDB, (req, res) => {
     }
     sql = sql.slice(0, -1); // Eliminar la última coma
     sql += ' WHERE ID_proveedor = ?';
-    values.push(ID_proveedor);
+    values.push(req.params.ID_proveedor);
 
     // Ejecutar la consulta SQL
     req.conexion.query(sql, values, (error, data, fils) => {
@@ -78,7 +76,7 @@ appProveedores.put('/update',dtoProveedores,appDB, (req, res) => {
         res.send();
     });
 });
-appProveedores.delete('/delete',appDB, (req, res) => { 
+appProveedores.delete('/delete/:ID_proveedor',appDB, (req, res) => { 
     
     const { ID_proveedor } = req.body; 
 
@@ -91,7 +89,7 @@ appProveedores.delete('/delete',appDB, (req, res) => {
     console.log(req.body)
     req.conexion.query(
     /*sql*/`DELETE FROM  proveedores WHERE ID_proveedor= ?`,
-        [ID_hogar],
+        [req.params.ID_proveedor],
         (error, data,fils) => {
             console.log(error);
             console.log(data);

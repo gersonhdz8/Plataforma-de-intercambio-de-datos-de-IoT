@@ -1,9 +1,7 @@
-import mysql from "mysql2";
 import {Router} from "express";
-import {Exclude, plainToClass} from "class-transformer";
 import {dtoHogares} from "../middleware/DTO.js"
 import appDB from "../conexionDataBase/conexionDB.js"
-import {tokenJWT} from "../middleware/token.js"
+
 
 
 const appHogares = Router();
@@ -48,17 +46,17 @@ appHogares.post('/post',dtoHogares,appDB, (req, res) => {
         })
 });
 
-appHogares.put('/update',dtoHogares,appDB, (req, res) => { 
+appHogares.put('/update/:ID_hogar',dtoHogares,appDB, (req, res) => { 
 
-    const { id_hogar, nombre_hogar, direccion,ciudad,pais,id_propietario } = req.body;
+    const { ID_hogar, Nombre_hogar, Direccion,Ciudad,Pais,ID_propietario } = req.body;
     
 
     const updateFields = {};
-    if (nombre_hogar) updateFields.Nombre_hogar = nombre_hogar;
-    if (direccion) updateFields.Direccion = direccion;
-    if (ciudad) updateFields.Ciudad = ciudad;
-    if (pais) updateFields.Pais = pais;
-    if (id_propietario) updateFields.ID_propietario = id_propietario;
+    if (Nombre_hogar) updateFields.Nombre_hogar = Nombre_hogar;
+    if (Direccion) updateFields.Direccion = Direccion;
+    if (Ciudad) updateFields.Ciudad = Ciudad;
+    if (Pais) updateFields.Pais = Pais;
+    if (ID_propietario) updateFields.ID_propietario = ID_propietario;
 
     // Verificar si hay campos para actualizar
     if (Object.keys(updateFields).length === 0) {
@@ -74,7 +72,7 @@ appHogares.put('/update',dtoHogares,appDB, (req, res) => {
     }
     sql = sql.slice(0, -1); // Eliminar la última coma
     sql += ' WHERE ID_hogar = ?';
-    values.push(id_hogar);
+    values.push(req.params.ID_hogar);
 
     // Ejecutar la consulta SQL
     req.conexion.query(sql, values, (error, data, fils) => {
@@ -87,7 +85,7 @@ appHogares.put('/update',dtoHogares,appDB, (req, res) => {
         res.send();
     });
 });
-appHogares.delete('/delete',appDB, (req, res) => { 
+appHogares.delete('/delete:ID_hogar',appDB, (req, res) => { 
     
     const { ID_hogar } = req.body; 
 
@@ -100,7 +98,7 @@ appHogares.delete('/delete',appDB, (req, res) => {
     console.log(req.body)
     req.conexion.query(
     /*sql*/`DELETE FROM  hogares WHERE ID_hogar= ?`,
-        [ID_hogar],
+        [req.params.ID_hogar],
         (error, data,fils) => {
             console.log(error);
             console.log(data);

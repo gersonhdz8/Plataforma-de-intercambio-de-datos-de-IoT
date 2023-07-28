@@ -10,22 +10,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 import { Type, Expose } from "class-transformer";
 import { IsDefined, IsNotEmpty, IsNumber, IsString } from 'class-validator';
 export class DispositivosProveedores {
-    constructor(p1, p2, p3, p4, p5) {
-        this.ID_evento_dispositivo = p1;
+    constructor(p1, p2, p3, p4) {
+        this.ID_dispositivo_proveedor = p1;
         this.ID_dispositivo = p2;
-        this.Tipo_evento = p3;
-        this.Descripcion = p4;
-        this.Fecha_hora = p5;
+        this.ID_proveedor = p3;
+        this.Precio = p4;
     }
 }
 __decorate([
-    Expose({ name: "ID_evento_dispositivo" }),
-    Type(() => Number)
-    //@IsNumber({}, {message: ()=>{throw {status: 406, message:"El formato del parametro (ID_hogar) no es correcto"}}})
-    //@IsDefined({message: ()=>{ throw {status:422, message: "El parametro ID_hogar es obligatorio"}}})    
-    ,
+    Expose({ name: "ID_dispositivo_proveedor" }),
+    Type(() => Number),
     __metadata("design:type", Number)
-], DispositivosProveedores.prototype, "ID_evento_dispositivo", void 0);
+], DispositivosProveedores.prototype, "ID_dispositivo_proveedor", void 0);
 __decorate([
     Expose({ name: "ID_dispositivo" }),
     Type(() => Number),
@@ -35,23 +31,15 @@ __decorate([
     __metadata("design:type", Number)
 ], DispositivosProveedores.prototype, "ID_dispositivo", void 0);
 __decorate([
-    Expose({ name: "Tipo_evento" }),
-    IsString({ message: "El formato del parametro (Tipo_evento) no es correcto" }),
-    IsDefined({ message: () => { throw { status: 422, message: "El parametro (Tipo_evento) es obligatorio" }; } }),
-    IsNotEmpty({ message: () => { throw { status: 422, message: "El parametro (Tipo_evento) no debe estar vacio" }; } }),
-    __metadata("design:type", String)
-], DispositivosProveedores.prototype, "Tipo_evento", void 0);
+    Expose({ name: "ID_proveedor" }),
+    IsString({ message: "El formato del parametro (ID_proveedor) no es correcto" }),
+    IsDefined({ message: () => { throw { status: 422, message: "El parametro (ID_proveedor) es obligatorio" }; } }),
+    IsNotEmpty({ message: () => { throw { status: 422, message: "El parametro (ID_proveedor) no debe estar vacio" }; } }),
+    __metadata("design:type", Number)
+], DispositivosProveedores.prototype, "ID_proveedor", void 0);
 __decorate([
-    Expose({ name: "Descripcion" }),
-    IsString({ message: "El formato del parametro (Descripcion) no es correcto" }),
-    IsDefined({ message: () => { throw { status: 422, message: "El parametro (Descripcion) es obligatorio" }; } }),
-    IsNotEmpty({ message: () => { throw { status: 422, message: "El parametro (Descripcion) no debe estar vacio" }; } }),
-    __metadata("design:type", String)
-], DispositivosProveedores.prototype, "Descripcion", void 0);
-__decorate([
-    Expose({ name: "Fecha_hora" }),
-    IsString({ message: "El formato del parametro (Fecha_hora) no es correcto" }),
-    IsDefined({ message: () => { throw { status: 422, message: "El parametro (Fecha_hora) es obligatorio" }; } }),
-    IsNotEmpty({ message: () => { throw { status: 422, message: "El parametro (Fecha_hora) no debe estar vacio" }; } }),
-    __metadata("design:type", String)
-], DispositivosProveedores.prototype, "Fecha_hora", void 0);
+    Expose({ name: "Precio" }),
+    IsDefined({ message: () => { throw { status: 422, message: "El parametro (Precio) es obligatorio" }; } }),
+    IsNotEmpty({ message: () => { throw { status: 422, message: "El parametro (Precio) no debe estar vacio" }; } }),
+    __metadata("design:type", Number)
+], DispositivosProveedores.prototype, "Precio", void 0);

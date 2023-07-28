@@ -1,9 +1,7 @@
-import mysql from "mysql2";
 import {Router} from "express";
-import {Exclude, plainToClass} from "class-transformer";
 import {dtoDispositivosProveedores} from "../middleware/DTO.js"
 import appDB from "../conexionDataBase/conexionDB.js"
-import {tokenJWT} from "../middleware/token.js"
+
 
 
 const appDispositivosProveedores = Router();
@@ -12,8 +10,8 @@ const appDispositivosProveedores = Router();
 appDispositivosProveedores.get('/list',appDB, (req, res) => {
 
     req.conexion.query(
-        /*sql*/`SELECT * FROM  eventos_dispositivos
-        ORDER BY ID_dispositivo ASC`,        
+        /*sql*/`SELECT * FROM  dispositivos_proveedores
+        ORDER BY ID_dispositivo_proveedor ASC`,        
         (error, data,fils) => {            
             console.log(data);            
             res.send(data);
@@ -26,7 +24,7 @@ appDispositivosProveedores.post('/post',dtoDispositivosProveedores,appDB, (req, 
     
     console.log(req.body)
     req.conexion.query(
-    /*sql*/`INSERT INTO eventos_dispositivos SET ?`,
+    /*sql*/`INSERT INTO dispositivos_proveedores SET ?`,
         [req.body],
         (error, data,fils) => {
             console.log(error);
@@ -40,17 +38,15 @@ appDispositivosProveedores.post('/post',dtoDispositivosProveedores,appDB, (req, 
         })
 });
 
-appDispositivosProveedores.put('/update',dtoDispositivosProveedores,appDB, (req, res) => { 
+appDispositivosProveedores.put('/update/:ID_dispositivo_proveedor',dtoDispositivosProveedores,appDB, (req, res) => { 
 
-    const { ID_evento_dispositivo, ID_dispositivo, Tipo_evento,Descripcion,Fecha_hora } = req.body;   
+    const { ID_dispositivo_proveedor, ID_dispositivo, ID_proveedor,Precio} = req.body;   
     
     
     const updateFields = {};
-    if (ID_evento_dispositivo) updateFields.ID_evento_dispositivo = ID_evento_dispositivo;
     if (ID_dispositivo) updateFields.ID_dispositivo = ID_dispositivo;
-    if (Tipo_evento) updateFields.Tipo_evento = Tipo_evento;
-    if (Descripcion) updateFields.Descripcion = Descripcion;
-    if (Fecha_hora) updateFields.Fecha_hora = Fecha_hora;
+    if (ID_proveedor) updateFields.ID_proveedor = ID_proveedor;
+    if (Precio) updateFields.Precio = Precio;   
 
     // Verificar si hay campos para actualizar
     if (Object.keys(updateFields).length === 0) {
@@ -58,15 +54,15 @@ appDispositivosProveedores.put('/update',dtoDispositivosProveedores,appDB, (req,
     }
 
     // Construir la consulta SQL dinámicamente
-    let sql = 'UPDATE eventos_dispositivos SET';
+    let sql = 'UPDATE dispositivos_proveedores SET';
     const values = [];
     for (const key in updateFields) {
         sql += ` ${key} = ?,`;
         values.push(updateFields[key]);
     }
     sql = sql.slice(0, -1); // Eliminar la última coma
-    sql += ' WHERE ID_evento_dispositivo = ?';
-    values.push(ID_evento_dispositivo);
+    sql += ' WHERE ID_dispositivo_proveedor = ?';
+    values.push(req.params.ID_dispositivo_proveedor);
 
     // Ejecutar la consulta SQL
     req.conexion.query(sql, values, (error, data, fils) => {
@@ -79,20 +75,20 @@ appDispositivosProveedores.put('/update',dtoDispositivosProveedores,appDB, (req,
         res.send();
     });
 });
-appDispositivosProveedores.delete('/delete',appDB, (req, res) => { 
+appDispositivosProveedores.delete('/delete/:ID_dispositivo_proveedor',appDB, (req, res) => { 
     
-    const { ID_evento_dispositivo } = req.body; 
+    const { ID_dispositivo_proveedor } = req.body; 
 
     // Verificar que el ID_evento_dispositivo sea un número válido antes de continuar
-    if (!Number.isInteger(ID_evento_dispositivo) || ID_evento_dispositivo <= 0) {
-        return res.status(400).json({ error: 'El ID_evento_dispositivo debe ser un número entero válido y mayor que cero.'});
+    if (!Number.isInteger(ID_dispositivo_proveedor) || ID_dispositivo_proveedor <= 0) {
+        return res.status(400).json({ error: 'El ID_dispositivo_proveedor debe ser un número entero válido y mayor que cero.'});
     }
     
     
     console.log(req.body)
     req.conexion.query(
-    /*sql*/`DELETE FROM  eventos_dispositivos WHERE ID_evento_dispositivo= ?`,
-        [ID_evento_dispositivo],
+    /*sql*/`DELETE FROM  dispositivos_proveedores WHERE ID_evento_dispositivo= ?`,
+        [req.params.ID_evento_dispositivo],
         (error, data,fils) => {
             console.log(error);
             console.log(data);

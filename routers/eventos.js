@@ -1,9 +1,7 @@
-import mysql from "mysql2";
 import {Router} from "express";
-import {Exclude, plainToClass} from "class-transformer";
 import {dtoEventos} from "../middleware/DTO.js"
 import appDB from "../conexionDataBase/conexionDB.js"
-import {tokenJWT} from "../middleware/token.js"
+
 
 
 const appEventos = Router();
@@ -40,7 +38,7 @@ appEventos.post('/post',dtoEventos,appDB, (req, res) => {
         })
 });
 
-appEventos.put('/update',dtoEventos,appDB, (req, res) => { 
+appEventos.put('/update/:ID_evento_dispositivo',dtoEventos,appDB, (req, res) => { 
 
     const { ID_evento_dispositivo, ID_dispositivo, Tipo_evento,Descripcion,Fecha_hora } = req.body;   
 
@@ -66,7 +64,7 @@ appEventos.put('/update',dtoEventos,appDB, (req, res) => {
     }
     sql = sql.slice(0, -1); // Eliminar la última coma
     sql += ' WHERE ID_evento_dispositivo = ?';
-    values.push(ID_evento_dispositivo);
+    values.push(req.params.ID_evento_dispositivo);
 
     // Ejecutar la consulta SQL
     req.conexion.query(sql, values, (error, data, fils) => {
@@ -79,7 +77,7 @@ appEventos.put('/update',dtoEventos,appDB, (req, res) => {
         res.send();
     });
 });
-appEventos.delete('/delete',appDB, (req, res) => { 
+appEventos.delete('/delete/:ID_evento_dispositivo',appDB, (req, res) => { 
     
     const { ID_evento_dispositivo } = req.body; 
 
@@ -92,7 +90,7 @@ appEventos.delete('/delete',appDB, (req, res) => {
     console.log(req.body)
     req.conexion.query(
     /*sql*/`DELETE FROM  eventos_dispositivos WHERE ID_evento_dispositivo= ?`,
-        [ID_evento_dispositivo],
+        [req.params.ID_evento_dispositivo],
         (error, data,fils) => {
             console.log(error);
             console.log(data);

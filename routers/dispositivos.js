@@ -1,9 +1,7 @@
-import mysql from "mysql2";
 import {Router} from "express";
-import {Exclude, plainToClass} from "class-transformer";
 import {dtoDispositivos} from "../middleware/DTO.js"
 import appDB from "../conexionDataBase/conexionDB.js"
-import {tokenJWT} from "../middleware/token.js"
+
 
 
 const appDispositivos = Router();
@@ -31,22 +29,17 @@ appDispositivos.post('/post',dtoDispositivos,appDB, (req, res) => {
         (error, data,fils) => {
             console.log(error);
             console.log(data);
-            console.log(fils);
-            data.affectedRows += 200;
-            let result = req.body;
-            result.id_hogar = data.insertId;
-            res.status(data.affectedRows).send(result);
-            res.send();
+            console.log(fils);           
+            res.send(data);
         })
 });
 
-appDispositivos.put('/update',dtoDispositivos,appDB, (req, res) => { 
+appDispositivos.put('/update/:ID_dispositivo',dtoDispositivos,appDB, (req, res) => { 
 
-    const { ID_dispositivo, ID_hogar, ID_tipo_dispositivo,Nombre_dispositivo,Estado,ID_ubicacion } = req.body;   
+    const { ID_hogar, ID_tipo_dispositivo,Nombre_dispositivo,Estado,ID_ubicacion } = req.body;   
     
     
-    const updateFields = {};
-    if (ID_dispositivo) updateFields.ID_dispositivo = ID_dispositivo;
+    const updateFields = {};    
     if (ID_hogar) updateFields.ID_hogar = ID_hogar;
     if (ID_tipo_dispositivo) updateFields.ID_tipo_dispositivo = ID_tipo_dispositivo;
     if (Nombre_dispositivo) updateFields.Nombre_dispositivo = Nombre_dispositivo;
@@ -67,7 +60,7 @@ appDispositivos.put('/update',dtoDispositivos,appDB, (req, res) => {
     }
     sql = sql.slice(0, -1); // Eliminar la última coma
     sql += ' WHERE ID_dispositivo = ?';
-    values.push(ID_dispositivo);
+    values.push(req.params.ID_dispositivo);
 
     // Ejecutar la consulta SQL
     req.conexion.query(sql, values, (error, data, fils) => {
@@ -80,20 +73,19 @@ appDispositivos.put('/update',dtoDispositivos,appDB, (req, res) => {
         res.send();
     });
 });
-appDispositivos.delete('/delete',appDB, (req, res) => { 
+appDispositivos.delete('/delete/:ID_dispositivo',appDB, (req, res) => { 
     
     const { ID_dispositivo } = req.body; 
 
     // Verificar que el ID_dispositivo sea un número válido antes de continuar
     if (!Number.isInteger(ID_dispositivo) || ID_dispositivo <= 0) {
         return res.status(400).json({ error: 'El ID_hogar debe ser un número entero válido y mayor que cero.'});
-    }
-    
+    }    
     
     console.log(req.body)
     req.conexion.query(
     /*sql*/`DELETE FROM  dispositivos WHERE ID_dispositivo= ?`,
-        [ID_dispositivo],
+        [req.params.ID_dispositivo],
         (error, data,fils) => {
             console.log(error);
             console.log(data);
