@@ -1,5 +1,19 @@
 **HOGARES
+{
+  "ID_hogar": 1,
+  "Nombre_hogar": "Casa Principal",
+  "Direccion": "Calle Principal 123",
+  "Ciudad": "Ciudad de Ejemplo",
+  "Pais": "País de Ejemplo",
+  "ID_propietario": 1 // ID del propietario al que pertenece el hogar (si aplica)
+}
 
+Tabla "Tipos_Dispositivos":
+{
+  "ID_tipo_dispositivo": 1,
+  "Nombre_tipo": "Sensor de Temperatura",
+  "Descripcion": "Sensor para medir la temperatura del ambiente"
+}
 
 **DISPOSITIVOS 
 {
@@ -10,3 +24,44 @@
     "Estado": "Activo",
     "ID_ubicacion": 1
   },
+
+Tabla "Eventos_Dispositivos":
+{
+  "ID_evento_dispositivo": 1,
+  "ID_dispositivo": 1, // ID del dispositivo al que se asocia el evento
+  "Tipo_evento": "Evento de Prueba",
+  "Descripcion": "Descripción del evento de prueba",
+  "Fecha_hora": "2023-07-28 12:34:56" // Fecha y hora del evento
+}
+
+Tabla "Proveedores":
+{
+  "ID_proveedor": 1,
+  "Nombre_proveedor": "Proveedor de Dispositivos",
+  "Direccion_proveedor": "Dirección del Proveedor",
+  "Numero_Contacto": "1234567890" // Número de contacto del proveedor
+}
+
+Tabla "Info_Propietario":
+{
+  "ID_propietario": 1,
+  "Nombre": "Juan",
+  "Apellido": "Pérez",
+  "Numero_Contacto": "9876543210", // Número de contacto del propietario
+  "DNI": "12345678" // Documento de identidad del propietario
+}
+
+Tabla "Dispositivos_Proveedores":
+{
+  "ID_dispositivo_proveedor": 1,
+  "ID_dispositivo": 1, // ID del dispositivo al que se asocia el proveedor
+  "ID_proveedor": 1, // ID del proveedor al que se asocia el dispositivo
+  "Precio": 99.99 // Precio del dispositivo proporcionado por el proveedor
+}
+
+Tabla "Ubicacion":
+{
+  "ID_ubicacion": 1,
+  "Nombre_ubicacion": "Sala"
+}
+
