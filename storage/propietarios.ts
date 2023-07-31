@@ -32,12 +32,8 @@ export class Propietarios {
     DNI: number;
     
 
-    constructor(p1: number, p2: string, p3: string, p4: number, p5: number) {
-        this.ID_propietario = p1;
-        this.Nombre = p2;
-        this.Apellido = p3;
-        this.Numero_Contacto = p4;
-        this.DNI = p5;
-        
+    constructor(data:Partial<Propietarios>)
+    {
+        Object.assign(this, data);
     }
 }

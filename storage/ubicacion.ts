@@ -15,8 +15,8 @@ export class Ubicacion {
 
     
 
-    constructor(p1: number, p2: string) {
-        this.ID_ubicacion = p1;
-        this.Nombre_ubicacion = p2;       
+    constructor(data:Partial<Ubicacion>)
+    {
+        Object.assign(this, data);
     }
 }

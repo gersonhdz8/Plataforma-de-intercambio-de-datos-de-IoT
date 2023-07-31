@@ -27,11 +27,8 @@ export class Proveedores {
 
     
 
-    constructor(p1: number, p2: string, p3: string, p4: number) {
-        this.ID_proveedor = p1;
-        this.Nombre_proveedor = p2;
-        this.Direccion_proveedor = p3;
-        this.Numero_Contacto = p4;
-        
+    constructor(data:Partial<Proveedores>)
+    {
+        Object.assign(this, data);
     }
 }

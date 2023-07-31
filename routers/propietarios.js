@@ -28,11 +28,7 @@ appPropietarios.post('/post',dtoPropietarios,appDB, (req, res) => {
         (error, data,fils) => {
             console.log(error);
             console.log(data);
-            console.log(fils);
-            data.affectedRows += 200;
-            let result = req.body;
-            result.id_hogar = data.insertId;
-            res.status(data.affectedRows).send(result);
+            console.log(fils);            
             res.send();
         })
 });

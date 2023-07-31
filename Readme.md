@@ -74,9 +74,11 @@ Requisitos:
 ```
 7. Configurar el archivo .env con las variables de entorno necesarias. Asegúrate de proporcionar las configuraciones adecuadas para el servidor y la base de datos.
 
-8. Ejecuta los comandos de SQL para crear la base de datos e insertar los datos por defecto en la carpeta DataBase
+8. Descarga la extensión de MySQL(https://doc.database-client.com/#/). Luego realiza la conexión al server de MySQL de tu pc (localhost).
 
-8. Para iniciar el servidor, utiliza el siguiente comando:
+8. Ejecuta los comandos de SQL para crear la base de datos e insertar los datos por defecto en la carpeta DataBase. Puedes realizarlo desde el temrinal si lo deseeas.
+
+9. Para iniciar el servidor, utiliza el siguiente comando:
 ```bash
  npm run dev
 
@@ -182,31 +184,46 @@ Recuerda también cerrar la conexión de la base de datos adecuadamente cuando y
 - Ruta: /token
 - Parámetros de consulta:
     - tabla: (String) El nombre de la tabla para la que se generará el token.
+       ```bash
+        http//localhost:port/token?tabla=/hogares
+        ```
+        Los nombres de las tablas son igual que las rutas(/dispositivos, /proveedores, etc)
+    
 
 Este endpoint permite generar un token JWT válido para una tabla específica. Se debe proporcionar el nombre de la tabla en el parámetro de consulta tabla. El token generado será válido por 30 minutos y se utilizará para acceder a rutas protegidas relacionadas con esa tabla.
 
 **(Las rutas son iguales para el resto de tablas, sólo hay que cambiar el nombre de la tabla "/dispositivos/list", "dispositivos/post", etc)**
-**Para cada ruta cambia el cuerpo de la solicitud a recibir. Los ejemplos se encuentran en el archivo formatoData.txt**
+*Para cada ruta cambia el cuerpo de la solicitud a recibir. Los ejemplos se encuentran en el archivo formatoData.txt*
 
 **Listar**
 - Método: GET
-- Ruta: /hogares/list
+- Ruta:
+```bash        
+http//localhost:port/hogares/list 
+``` 
 Este endpoint permite obtener una lista de todos los hogares registrados en el sistema.
 
 **Crear**
 - Método: POST
-- Ruta: /hogares/post
+- Ruta:
+```bash        
+http//localhost:port/hogares/post 
+```  
 - Cuerpo de la solicitud: Objeto JSON que representa los datos del hogar.
     - Nombre_hogar: (String) El nombre del hogar.
     - Direccion: (String) La dirección del hogar.
     - Ciudad: (String) La ciudad del hogar.
     - Pais: (String) El país del hogar.
-    - ID_propietario: (Number) El ID del propietario del hogar.
+    - ID_propietario: (Number) El ID del propietario del hogar.   
+
 Este endpoint permite crear un nuevo hogar en el sistema. Se deben proporcionar todos los datos requeridos en el cuerpo de la solicitud en formato JSON.
 
 **Actualizar**
 - Método: PUT
-- Ruta: /hogares/update/:ID_hogar
+- Ruta:
+```bash        
+http//localhost:port/hogares/update/:ID_hogar
+```  
 - Parámetros de la ruta:
     - ID_hogar: (Number) El ID del hogar que se desea actualizar.
 - Cuerpo de la solicitud: Objeto JSON que representa los datos actualizados del hogar. Se pueden proporcionar uno o varios campos para actualizar.
@@ -214,14 +231,19 @@ Este endpoint permite crear un nuevo hogar en el sistema. Se deben proporcionar 
     - Direccion: (String) La nueva dirección del hogar.
     - Ciudad: (String) La nueva ciudad del hogar.
     - Pais: (String) El nuevo país del hogar.
-    - ID_propietario: (Number) El nuevo ID del propietario del hogar.
+    - ID_propietario: (Number) El nuevo ID del propietario del hogar.   
+
 Este endpoint permite actualizar un hogar existente en el sistema. Se debe proporcionar el ID del hogar en la ruta y los datos actualizados en el cuerpo de la solicitud en formato JSON.
 
 **Eliminar**
 - Método: DELETE
-- Ruta: /hogares/delete/:ID_hogar
+- Ruta: 
+```bash        
+http//localhost:port/hogares/delete/:ID_hogar
+``` 
 - Parámetros de la ruta:
-    - ID_hogar: (Number) El ID del hogar que se desea eliminar.
+    - ID_hogar: (Number) El ID del hogar que se desea eliminar. 
+    
 Este endpoint permite eliminar un hogar existente en el sistema. Se debe proporcionar el ID del hogar en la ruta.
 ## Authors
 

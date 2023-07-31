@@ -40,13 +40,10 @@ export class Dispositivos {
     ID_ubicacion: number;
 
     
-
-    constructor(p1: number, p2: number, p3: string, p4: string, p5: number) {
-        this.ID_dispositivo = p1;
-        this.ID_tipo_dispositivo = p2;
-        this.Nombre_dispositivo = p3;
-        this.Estado = p4;
-        this.ID_ubicacion = p5;
-        
+    constructor(data:Partial<Dispositivos>)
+    {
+        Object.assign(this, data);
     }
+
+    
 }

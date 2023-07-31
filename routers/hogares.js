@@ -20,28 +20,16 @@ appHogares.get('/list',appDB, (req, res) => {
     
 })
 
-appHogares.post('/post',dtoHogares,appDB, (req, res) => {    
+appHogares.post('/post',dtoHogares,appDB, (req, res) => {  
     
-    //const { id_hogar, nombre_hogar, direccion,ciudad,pais,id_propietario } = req.body;
-    /* VALORES DE ENTRADA PARA CREAR UN HOGAR ({    
-    "Nombre_hogar": "Apartamento AAAAA",
-    "Direccion": "Calle 3333",
-    "Ciudad":"Cartagena",
-    "Pais":"Colombia",
-    "ID_propietario":"5"
-    })*/
-    console.log(req.body)
+    console.log(req.body)    
     req.conexion.query(
     /*sql*/`INSERT INTO hogares SET ?`,
-        [req.body],
+        [req.body],             
         (error, data,fils) => {
             console.log(error);
             console.log(data);
-            console.log(fils);
-            data.affectedRows += 200;
-            let result = req.body;
-            result.id_hogar = data.insertId;
-            res.status(data.affectedRows).send(result);
+            console.log(fils);           
             res.send();
         })
 });

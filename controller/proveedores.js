@@ -10,11 +10,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 import { Type, Expose } from "class-transformer";
 import { IsDefined, IsNotEmpty, IsNumber, IsString } from 'class-validator';
 export class Proveedores {
-    constructor(p1, p2, p3, p4) {
-        this.ID_proveedor = p1;
-        this.Nombre_proveedor = p2;
-        this.Direccion_proveedor = p3;
-        this.Numero_Contacto = p4;
+    constructor(data) {
+        Object.assign(this, data);
     }
 }
 __decorate([

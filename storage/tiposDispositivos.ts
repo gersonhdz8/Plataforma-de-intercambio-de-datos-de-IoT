@@ -20,10 +20,8 @@ export class TiposDispositivos {
     Descripcion: string; 
 
 
-    constructor(p1: number, p2: string, p3: string) {
-        this.ID_tipo_dispositivo = p1;
-        this.Nombre_tipo = p2;
-        this.Descripcion = p3;
-
+    constructor(data:Partial<TiposDispositivos>)
+    {
+        Object.assign(this, data);
     }
 }

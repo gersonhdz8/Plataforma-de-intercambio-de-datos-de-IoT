@@ -9,20 +9,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 import { Type, Expose } from "class-transformer";
 import { IsDefined, IsNotEmpty, IsNumber, IsString } from 'class-validator';
-function isEnteroMayorQueCero(value) {
-    if (!Number.isInteger(value) || value <= 0) {
-        return false;
-    }
-    return true;
-}
 export class Hogares {
-    constructor(p1, p2, p3, p4, p5, p6) {
-        this.ID_hogar = p1;
-        this.Nombre_hogar = p2;
-        this.Direccion = p3;
-        this.Ciudad = p4;
-        this.Pais = p5;
-        this.ID_propietario = p6;
+    constructor(data) {
+        Object.assign(this, data);
     }
 }
 __decorate([

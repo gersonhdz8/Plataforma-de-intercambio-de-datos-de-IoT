@@ -34,12 +34,8 @@ export class Eventos {
 
     
 
-    constructor(p1: number, p2: number, p3: string, p4: string, p5: string) {
-        this.ID_evento_dispositivo = p1;
-        this.ID_dispositivo = p2;
-        this.Tipo_evento = p3;
-        this.Descripcion = p4;
-        this.Fecha_hora = p5;
-        
+    constructor(data:Partial<Eventos>)
+    {
+        Object.assign(this, data);
     }
 }

@@ -10,10 +10,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 import { Type, Expose } from "class-transformer";
 import { IsDefined, IsNotEmpty, IsString } from 'class-validator';
 export class TiposDispositivos {
-    constructor(p1, p2, p3) {
-        this.ID_tipo_dispositivo = p1;
-        this.Nombre_tipo = p2;
-        this.Descripcion = p3;
+    constructor(data) {
+        Object.assign(this, data);
     }
 }
 __decorate([

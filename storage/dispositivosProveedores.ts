@@ -27,11 +27,8 @@ export class DispositivosProveedores {
 
     
 
-    constructor(p1: number, p2: number, p3: number, p4: number) {
-        this.ID_dispositivo_proveedor = p1;
-        this.ID_dispositivo = p2;
-        this.ID_proveedor = p3;
-        this.Precio = p4;        
-        
+    constructor(data:Partial<DispositivosProveedores>)
+    {
+        Object.assign(this, data);
     }
 }

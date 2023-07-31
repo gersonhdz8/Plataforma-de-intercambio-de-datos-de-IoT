@@ -1,12 +1,6 @@
 import { Type, Transform, Expose } from "class-transformer";
 import { IsDefined, IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
-function isEnteroMayorQueCero(value: number) {
-    if (!Number.isInteger(value) || value <= 0) {
-        return false;
-    }
-    return true;
-    }
 
 export class Hogares {
 
@@ -44,12 +38,8 @@ export class Hogares {
     @IsNumber({}, {message: ()=>{throw {status: 406, message:"El formato del parametro (ID_hogar) no es correcto"}}})  
     ID_propietario: number;
 
-    constructor(p1: number, p2: string, p3: string, p4: string, p5: string, p6: number) {
-        this.ID_hogar = p1;
-        this.Nombre_hogar = p2;
-        this.Direccion = p3;
-        this.Ciudad = p4;
-        this.Pais = p5;
-        this.ID_propietario = p6;
+    constructor(data:Partial<Hogares>)
+    {
+        Object.assign(this, data);
     }
 }
