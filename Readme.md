@@ -159,7 +159,7 @@ tokenJWT: Esta función middleware genera un token JWT válido para una tabla es
 
 validateJWT: Esta función middleware verifica la validez del token JWT proporcionado en el encabezado Authorization. También verifica que el valor de la tabla en el token concuerde con la tabla específica esperada para la ruta actual. Si el token no es válido o no coincide con la tabla esperada, devuelve un mensaje de error.
 
-![Alt text](img/validateJWT.png)
+![Alt text](img/image.png)
 
 
 ##  Middleware appDB
