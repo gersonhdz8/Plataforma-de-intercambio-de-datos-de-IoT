@@ -11,7 +11,7 @@ appHogares.get('/list',appDB, (req, res) => {
 
     req.conexion.query(
         /*sql*/`SELECT * FROM  hogares
-        ORDER BY nombre_hogar ASC`,        
+        ORDER BY Nombre_hogar ASC`,        
         (error, data,fils) => {            
             console.log(data);            
             res.send(data);

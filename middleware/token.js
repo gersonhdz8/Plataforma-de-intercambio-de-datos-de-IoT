@@ -50,7 +50,7 @@ const tokenJWT = async (req, res, next) => {
 };
 
 const validateJWT = async (req, res, next) => {
-    console.log(req.baseUrl)
+    
     const { authorization } = req.headers;
     if (!authorization) return res.json({ status: 401, message: "Token no enviado" });
 
@@ -62,11 +62,13 @@ const validateJWT = async (req, res, next) => {
             encoder.encode(process.env.JWT_PRIVATE_KEY)
         );
 
-        const { tabla } = jwtData.payload;
-        const expectedTabla = req.query.tabla;
+        const { inst } = jwtData.payload;
+        const expectedTabla = req.baseUrl;
+        console.log(expectedTabla)
+        console.log(inst["tabla"])
 
         // Verificar que el valor de "tabla" concuerde con la tabla específica esperada
-        if (tabla !== expectedTabla) {
+        if (inst["tabla"] !== expectedTabla) {
             return res.json({ status: 403, message: "Token no válido para esta tabla" });
         }
 
